@@ -1,0 +1,52 @@
+<h3>Listado de Heroes</h3>
+
+<!-- no tiene mucho sentido que nosotros usemos esto dos veces porque javascript esta evaluando dos veces la condicional if,
+ y el ciclo de detecccion de angular lo esta haciendo dos veces  tambien entonces comentamos y lo resumimos mas abajao
+-->
+
+<!--
+<div *ngIf="deleteHero">  //comentario: deleteHero tiene un expresion falso porque no e borrado nada, si yo borro un hero la expresion de deleteHero cambia a true y se muestra el mensaje de adentro el que esta en el h3
+  <h3>Héroe borrado <small class="text-danger">{{deleteHero}}</small></h3>
+</div>
+-->
+
+
+ <!--//comentario: la negacion de ese valor !deleteHero
+<h3 *ngIf="!deleteHero">No ha borrado nada.</h3>
+-->
+
+
+
+
+
+<!-- no tiene mucho sentido que nosotros usemos los if de arreiba dos veces porque javascript esta evaluando dos veces,
+ y el ciclo de detecccion de angular lo esta haciendo dos veces  tambien entonces aca lo resumimos y lo hacemos otra forma mejor
+ng-template es como un div que no existe-->
+<!--con el else es como un else (sino ) es decir si deleteHero es falso entonces se muestra el template nothingWasDeleted que es lo caso controario que hace la referencia al ng-template-->
+<div *ngIf="deleteHero else nothingWasDeleted">
+  <h3>Héroe borrado <small class="text-danger">{{deleteHero}}</small></h3>
+</div>
+
+
+<!--nothingWasDeleted es el nombre del template como una referencia local como si fuera el id-->
+<!--ng-template no es un elemento del html, es una referencia local a un template-->
+<ng-template #nothingWasDeleted>
+  <h3>No ha borrado nada.</h3>
+</ng-template>
+
+
+
+
+
+<button
+*ngIf="heroNames.length > 0"
+(click)="removeLastHero()"
+class="btn btn-outline-danger">
+  Borrar últmio Héroe
+</button>
+
+
+<ul class="mt-2 list-group">
+  <li *ngFor="let name of heroNames" class="list-group-item">{{name}}</li>
+
+</ul>
